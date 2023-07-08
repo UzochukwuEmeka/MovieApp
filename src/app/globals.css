@@ -2,26 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  * {
+    @apply p-0 m-0 box-border
+  }
+
+  body {
+    @apply bg-[#141414] text-white relative   !scrollbar-thin !scrollbar-track-transparent !scrollbar-thumb-red-600
+  }
+
+  header {
+    @apply  fixed top-0 w-full z-50 flex items-center justify-between transition-all p-4 lg:px-10 lg:py-6 
+  }
+
+  a {
+    @apply no-underline
+  }
+
+  li {
+    @apply list-none
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer components {
+
+  .ListLink {
+    @apply cursor-pointer text-sm font-light text-[#e5e5e5] transition duration-[400] hover:text-[#b3b3b3];
+  }
+
+
+  .bannerbutton{
+    @apply  flex items-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl;
+  }
 }
