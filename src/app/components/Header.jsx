@@ -4,8 +4,12 @@ import Image from 'next/image'
 import { SearchIcon, BellIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
+import useAuth from '../hooks/useAuth'
+
 
 const Header = () => {
+
+    const {logOut } = useAuth()
     const [isScroll, setIsScroll] = useState(false)
 
     useEffect(() => {
@@ -28,7 +32,7 @@ const Header = () => {
 
 
     return (
-        <header className={ ` ${isScroll && 'bg-[#141414]'}` } >
+        <header className={` ${isScroll && 'bg-[#141414]'}`} >
             <div className='flex space-x-3 md:space-x-10'>
                 <img src={'https://rb.gy/ulxxee'} width={100} height={100} alt='Netfilx' />
                 <ul className='hidden md:flex space-x-3'>
@@ -44,7 +48,7 @@ const Header = () => {
                 <SearchIcon className='hidden h-6 w-6 sm:inline' />
                 <p className='hidden lg:inline'>Kids</p>
                 <BellIcon className=' h-6 w-6 ' />
-                <Link href={'/account'}>
+                <Link href={'/account'} onClick={logOut}>
                     <img
                         src="https://rb.gy/g1pwyx"
                         alt=""

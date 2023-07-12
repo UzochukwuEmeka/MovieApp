@@ -3,11 +3,15 @@ import Banner from "./Banner";
 import { getMovieData } from "../libs/getmovies";
 import { useState, useEffect } from "react";
 import TestingComponent from "./TestingComponent";
+import { modalState } from "../atom/ModalAtom";
+import Modal from "./Modal";
+
 
 
 
 import React from 'react'
 import Row from "./Row";
+import { useRecoilValue } from "recoil";
 
 const HomeComponet = () => {
     const [movieData, setMovieData] = useState({
@@ -30,6 +34,7 @@ const HomeComponet = () => {
         fetchData();
     }, []);
 
+    const showModal = useRecoilValue(modalState)
 
     const movieRows = [
         { title: 'Trending Now', movie: movieData.trendingNow },
@@ -57,7 +62,7 @@ const HomeComponet = () => {
                 </section>
 
             </div>
-            {/* Modal */}
+            {showModal && <Modal />}
         </>
     )
 }

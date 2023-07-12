@@ -4,10 +4,17 @@ import Image from "next/image"
 import { baseUrl } from "../constant/Movieurl"
 import { FaPlay } from 'react-icons/fa'
 import { InformationCircleIcon } from "@heroicons/react/solid"
+import { modalState } from "../atom/ModalAtom"
+import { moviesSate } from "../atom/ModalAtom"
+import { useRecoilState } from "recoil"
+
 
 const Banner = ({ movieData }) => {
+  const [showModal, setShowmodal] = useRecoilState(modalState)
+  const [currentmovie, setCurrentMovie] = useRecoilState(moviesSate)
 
   const [filmData, setFilmData] = useState(null)
+  console.log(showModal)
 
   useEffect(() => {
     setFilmData(movieData[Math.floor(Math.random() * movieData.length)])
@@ -18,7 +25,7 @@ const Banner = ({ movieData }) => {
 
   return (
     <div className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12">
-   
+
       <div className="absolute top-0  left-0 -z-10 h-[95vh] w-full">
         <Image alt="Banner Image" src={`${baseUrl}${filmData?.backdrop_path || filmData?.poster_path}`} layout="fill" objectFit="cover" />
       </div>
@@ -34,7 +41,13 @@ const Banner = ({ movieData }) => {
           <FaPlay className="text-black w-4 h-4 md:w-7 md:h-7" />
           Play
         </button>
-        <button className="bannerbutton bg-[gray]/70">More Info <InformationCircleIcon className="h-5 w-5 md:h-8 md:w-8" /></button>
+        <button className="bannerbutton bg-[gray]/70" onClick={() => {
+          setShowmodal(true)
+
+          setCurrentMovie(filmData)
+
+
+        }}>More Info <InformationCircleIcon className="h-5 w-5 md:h-8 md:w-8" /></button>
 
       </div>
     </div>
