@@ -52,7 +52,7 @@ const HomeComponet = () => {
 
     return (
         <>
-            <div>
+            <div className={`relative pl-4 pb-24 lg:space-y-24 lg:pl-16 ${showModal && '!h-screen overflow-hidden'}`}>
                 <Banner movieData={movieData.netflixOriginals} />
                 <section className=" md:space-y-24">
                     {movieRows.map((movieRow) => {
